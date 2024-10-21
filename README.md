@@ -1,1 +1,2 @@
-# MyFirstCode
+I started building the project by launching the remix IDE where I created file called simpleStorage.sol. In the file, I created the contract named simpleStorage. Which I created the state variable "favouriteNumber" which visibility is public and uint256 data type. And deployed it and did not get errors.
+In commiting and pushing the contract to my github repository, I face a lot of problems and confused through the processes. But I was able to resolve it through a youtube video guide.
