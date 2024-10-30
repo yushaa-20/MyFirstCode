@@ -3,6 +3,7 @@
 pragma solidity ^0.8.25;
 
 contract simpleStorage{
+    //Storing the state variable in a storage location
     uint256 public favouriteNumber; //To store the favourite Number
     uint256[] public favouriteNumbers; //A dynamic array to store multiple favourite Numbers
 
@@ -22,10 +23,13 @@ contract simpleStorage{
 
     contractState public state; //State variable to store the current contract state
 
-
+     //PART 3 / MC WEEK 3
+     //Implementing Events and emits
+     event numberUpdated(uint256 newNumber);
     //PART 3
     function storeNumber(uint256 _favouriteNumber) public{
         favouriteNumber = _favouriteNumber;
+        emit numberUpdated(_favouriteNumber);
     }
 
     function getFavouriteNumber() public view returns(uint256){
@@ -80,8 +84,12 @@ contract simpleStorage{
     //     return favouriteNumbers;
     // }
 
+    //Implementing mapping PART 2 / MC WEEK 3
+    mapping(string=>uint256) public nameToFavouriteNumber;
+
     function addPerson(string memory _name, uint256 _favouriteNumber) public{
         people.push(Person(_name, _favouriteNumber));
+        nameToFavouriteNumber[_name] = _favouriteNumber;
     }
 
     // //This function is to test the Struct Person
@@ -99,6 +107,19 @@ contract simpleStorage{
     }
     function isActive() public view returns(bool){
         return state == contractState.Active;
+    }
+
+    //Implementing a memory storage location
+    function whatName(string memory _name) public pure returns(string memory){
+        string memory name = _name;
+        return name;
+    }
+
+    //Implementing calldata storage location
+     function concatenateString(string calldata _inputString) public pure returns (string memory) {
+        // Memory variable to store the concatenated result
+        string memory newString = string(abi.encodePacked(_inputString, " is awesome!"));
+        return newString;
     }
 
 
